@@ -35,7 +35,7 @@ function triggerWarningSequence() {
     
     // 重置為銀狼冷青色風格（阿哈圖隱藏）
     document.body.classList.remove('elation-mode');
-    warningElement.innerText = "系統已被星核獵手接管。";
+    warningElement.innerText = "銀狼正在修復系統中";
     warningElement.style.color = "#a3eaff";
     warningElement.style.textShadow = "none";
     
