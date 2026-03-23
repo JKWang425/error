@@ -1,21 +1,14 @@
 :root {
     --sw-theme-cyan: #00ffff;
     --elation-theme-pink: #ff00ff;
-    --background-mulitply-cool: #001122;
-    --background-mulitply-elation: #330033;
     --transition-speed: 0.8s;
 }
 
 body {
     margin: 0;
     padding: 0;
+    /* 初始為實體深色背景，讓霓虹更突出 */
     background-color: #0a0b10;
-    background-image: url('https://upload-os-bbs.hoyolab.com/upload/2024/02/06/186212154/f5108b33bf6eb559869a19c629fb43f1_2731558778619623863.jpg');
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: multiply;
-    transition: background-color var(--transition-speed) ease;
-    
     color: #e0def4;
     font-family: 'Courier New', Courier, monospace;
     display: flex;
@@ -25,16 +18,7 @@ body {
     height: 100vh;
     overflow: hidden;
     position: relative;
-}
-
-/* 初始設定為銀狼風格 */
-body {
-    background-color: var(--background-mulitply-cool);
-}
-
-/* 歡愉模式啟動 */
-body.elation-mode {
-    background-color: var(--background-mulitply-elation);
+    /* 移除 body 的背景過渡，改過渡 <img> */
 }
 
 .glitch-overlay {
@@ -54,6 +38,26 @@ body.elation-mode {
     z-index: 1;
 }
 
+/* 新增：阿哈背景圖片樣式 */
+#elation-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 2; /* 位於 overlay 之上，符號生成層之下 */
+    opacity: 0; /* 初始隱藏 */
+    transition: opacity var(--transition-speed) ease;
+    /* 阿哈圖混合模式，使其融入深色背景並發光 */
+    mix-blend-mode: screen;
+}
+
+/* 歡愉模式啟動：阿哈圖優雅出現 */
+body.elation-mode #elation-bg-image {
+    opacity: 1;
+}
+
 #elation-container {
     position: absolute;
     top: 0;
@@ -61,7 +65,7 @@ body.elation-mode {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 5;
+    z-index: 3; /* 符號生成層，位於阿哈圖之上 */
     overflow: hidden;
 }
 
@@ -75,7 +79,7 @@ body.elation-mode {
 
 .container {
     text-align: center;
-    z-index: 10;
+    z-index: 10; /* 位於所有背景圖層之上 */
     padding: 50px;
     background: rgba(10, 11, 16, 0.85);
     border: 2px solid var(--sw-theme-cyan);
