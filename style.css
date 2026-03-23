@@ -1,3 +1,11 @@
+:root {
+    --sw-theme-cyan: #00ffff;
+    --elation-theme-pink: #ff00ff;
+    --background-mulitply-cool: #001122;
+    --background-mulitply-elation: #330033;
+    --transition-speed: 0.8s;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -6,6 +14,8 @@ body {
     background-size: cover;
     background-position: center;
     background-blend-mode: multiply;
+    transition: background-color var(--transition-speed) ease;
+    
     color: #e0def4;
     font-family: 'Courier New', Courier, monospace;
     display: flex;
@@ -15,6 +25,16 @@ body {
     height: 100vh;
     overflow: hidden;
     position: relative;
+}
+
+/* 初始設定為銀狼風格 */
+body {
+    background-color: var(--background-mulitply-cool);
+}
+
+/* 歡愉模式啟動 */
+body.elation-mode {
+    background-color: var(--background-mulitply-elation);
 }
 
 .glitch-overlay {
@@ -50,7 +70,7 @@ body {
     font-size: 2.5rem;
     opacity: 0.8;
     animation: floatUp 5s linear infinite;
-    text-shadow: 0 0 10px #ff00ff;
+    text-shadow: 0 0 10px var(--elation-theme-pink);
 }
 
 .container {
@@ -58,19 +78,25 @@ body {
     z-index: 10;
     padding: 50px;
     background: rgba(10, 11, 16, 0.85);
-    border: 2px solid #ff00ff;
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5), inset 0 0 10px rgba(255, 0, 255, 0.3);
+    border: 2px solid var(--sw-theme-cyan);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.2);
     position: relative;
     max-width: 600px;
+    transition: all var(--transition-speed) ease;
+}
+
+body.elation-mode .container {
+    border-color: var(--elation-theme-pink);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5), inset 0 0 10px rgba(255, 0, 255, 0.3);
 }
 
 h1 {
     font-size: 3rem;
-    color: #00ffff;
+    color: var(--sw-theme-cyan);
     text-transform: uppercase;
     margin-bottom: 10px;
     position: relative;
-    text-shadow: 2px 2px #ff00ff;
+    text-shadow: 2px 2px var(--elation-theme-pink);
     animation: textGlitch 2s infinite;
 }
 
@@ -85,14 +111,14 @@ h1::before, h1::after {
 
 h1::before {
     left: 2px;
-    text-shadow: -2px 0 #ff00ff;
+    text-shadow: -2px 0 var(--elation-theme-pink);
     clip: rect(44px, 450px, 56px, 0);
     animation: glitchAnim1 1.5s infinite linear alternate-reverse;
 }
 
 h1::after {
     left: -2px;
-    text-shadow: -2px 0 #00ffff;
+    text-shadow: -2px 0 var(--sw-theme-cyan);
     clip: rect(85px, 450px, 140px, 0);
     animation: glitchAnim2 1s infinite linear alternate-reverse;
 }
@@ -103,6 +129,7 @@ p {
     margin-bottom: 30px;
     letter-spacing: 1px;
     line-height: 1.5;
+    transition: all var(--transition-speed) ease;
 }
 
 .loader-hacked {
@@ -115,9 +142,15 @@ p {
 .loader-hacked span {
     width: 20px;
     height: 20px;
-    background-color: #ff00ff;
-    box-shadow: 0 0 10px #ff00ff;
+    background-color: var(--sw-theme-cyan);
+    box-shadow: 0 0 10px var(--sw-theme-cyan);
     animation: loaderPulse 1s infinite;
+    transition: all var(--transition-speed) ease;
+}
+
+body.elation-mode .loader-hacked span {
+    background-color: var(--elation-theme-pink);
+    box-shadow: 0 0 10px var(--elation-theme-pink);
 }
 
 .loader-hacked span:nth-child(2) {
@@ -130,10 +163,16 @@ p {
 
 .status-text {
     font-size: 1rem;
-    color: #ff00ff;
-    text-shadow: 0 0 5px #ff00ff;
+    color: var(--sw-theme-cyan);
+    text-shadow: 0 0 5px var(--sw-theme-cyan);
     margin-bottom: 25px;
     height: 24px;
+    transition: all var(--transition-speed) ease;
+}
+
+body.elation-mode .status-text {
+    color: var(--elation-theme-pink);
+    text-shadow: 0 0 5px var(--elation-theme-pink);
 }
 
 .button-group {
@@ -155,36 +194,33 @@ button {
     outline: none;
     position: relative;
     overflow: hidden;
-}
-
-#btn-retry {
-    color: #00ffff;
-    border: 2px solid #00ffff;
+    color: var(--sw-theme-cyan);
+    border: 2px solid var(--sw-theme-cyan);
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
-#btn-retry:hover {
-    background: #00ffff;
-    color: #0a0b10;
-    box-shadow: 0 0 20px #00ffff;
-}
-
-#btn-chaos {
-    color: #ff00ff;
-    border: 2px solid #ff00ff;
+body.elation-mode button {
+    color: var(--elation-theme-pink);
+    border-color: var(--elation-theme-pink);
     box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
 }
 
-#btn-chaos:hover {
-    background: #ff00ff;
+button:hover {
+    background: var(--sw-theme-cyan);
     color: #0a0b10;
-    box-shadow: 0 0 20px #ff00ff;
+    box-shadow: 0 0 20px var(--sw-theme-cyan);
+}
+
+body.elation-mode button:hover {
+    background: var(--elation-theme-pink);
+    color: #0a0b10;
+    box-shadow: 0 0 20px var(--elation-theme-pink);
 }
 
 @keyframes textGlitch {
-    0% { text-shadow: 2px 2px #ff00ff; }
-    50% { text-shadow: -2px -2px #00ffff; }
-    100% { text-shadow: 2px 2px #ff00ff; }
+    0% { text-shadow: 2px 2px var(--elation-theme-pink); }
+    50% { text-shadow: -2px -2px var(--sw-theme-cyan); }
+    100% { text-shadow: 2px 2px var(--elation-theme-pink); }
 }
 
 @keyframes glitchAnim1 {
@@ -198,8 +234,8 @@ button {
 }
 
 @keyframes loaderPulse {
-    0%, 100% { transform: scale(1); opacity: 1; background-color: #ff00ff; }
-    50% { transform: scale(1.2); opacity: 0.5; background-color: #00ffff; box-shadow: 0 0 15px #00ffff; }
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.5; }
 }
 
 @keyframes floatUp {
