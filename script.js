@@ -34,6 +34,12 @@ function triggerWarningSequence() {
         warningElement.innerText = "警告：檢測到未知的「歡愉」實體強制覆寫，系統控制權正在流失！";
         warningElement.style.color = "#ff00ff";
         warningElement.style.textShadow = "0 0 10px #ff00ff";
+        
+        document.body.classList.add('critical-shake');
+        setTimeout(() => {
+            document.body.classList.remove('critical-shake');
+        }, 600);
+        
     }, 5000);
 }
 
