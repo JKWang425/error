@@ -132,6 +132,53 @@ p {
     font-size: 1rem;
     color: #ff00ff;
     text-shadow: 0 0 5px #ff00ff;
+    margin-bottom: 25px;
+    height: 24px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    background: rgba(0, 0, 0, 0.5);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 12px 24px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+
+#btn-retry {
+    color: #00ffff;
+    border: 2px solid #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+#btn-retry:hover {
+    background: #00ffff;
+    color: #0a0b10;
+    box-shadow: 0 0 20px #00ffff;
+}
+
+#btn-chaos {
+    color: #ff00ff;
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+#btn-chaos:hover {
+    background: #ff00ff;
+    color: #0a0b10;
+    box-shadow: 0 0 20px #ff00ff;
 }
 
 @keyframes textGlitch {

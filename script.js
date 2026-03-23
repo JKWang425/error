@@ -1,6 +1,9 @@
 let secondsLeft = 10;
+let countdownInterval;
 const displayElement = document.getElementById('countdown-display');
 const elationContainer = document.getElementById('elation-container');
+const btnRetry = document.getElementById('btn-retry');
+const btnChaos = document.getElementById('btn-chaos');
 const elationSymbols = ['🎭', '🃏', '🎲', '✨', '😂', '🍷'];
 
 function spawnElationItem() {
@@ -17,18 +20,40 @@ function spawnElationItem() {
     }, 7000);
 }
 
-setInterval(spawnElationItem, 600);
+let spawnInterval = setInterval(spawnElationItem, 600);
 
-const countdownInterval = setInterval(() => {
-    displayElement.innerText = `[ SYSTEM_CORRUPTED :: ${secondsLeft}s ] >> 駭客程序無法停止這場狂歡...`;
-    secondsLeft--;
+function startTimer() {
+    clearInterval(countdownInterval);
+    secondsLeft = 10;
+    displayElement.style.color = "#ff00ff";
+    displayElement.style.textShadow = "0 0 5px #ff00ff";
+    displayElement.style.fontSize = "1rem";
+    displayElement.style.fontWeight = "normal";
+    
+    countdownInterval = setInterval(() => {
+        displayElement.innerText = `[ SYSTEM_CORRUPTED :: ${secondsLeft}s ] >> 駭客程序無法停止這場狂歡...`;
+        secondsLeft--;
 
-    if (secondsLeft < 0) {
-        clearInterval(countdownInterval);
-        displayElement.innerText = "ACCESS_DENIED // 阿哈真有面子！";
-        displayElement.style.color = "#ff00ff";
-        displayElement.style.textShadow = "0 0 15px #ff00ff, 0 0 30px #00ffff";
-        displayElement.style.fontSize = "1.3rem";
-        displayElement.style.fontWeight = "bold";
+        if (secondsLeft < 0) {
+            clearInterval(countdownInterval);
+            displayElement.innerText = "ACCESS_DENIED // 阿哈真有面子！";
+            displayElement.style.color = "#ff00ff";
+            displayElement.style.textShadow = "0 0 15px #ff00ff, 0 0 30px #00ffff";
+            displayElement.style.fontSize = "1.3rem";
+            displayElement.style.fontWeight = "bold";
+        }
+    }, 1000);
+}
+
+startTimer();
+
+btnRetry.addEventListener('click', () => {
+    startTimer();
+    displayElement.innerText = "[ REBOOTING ] >> 嘗試覆寫底層代碼...";
+});
+
+btnChaos.addEventListener('click', () => {
+    for (let i = 0; i < 15; i++) {
+        setTimeout(spawnElationItem, Math.random() * 300);
     }
-}, 1000);
+});
